@@ -33,7 +33,7 @@ class BooksController < ApplicationController
   end
 
   def load_book
-    @book = Book.find(params[:id])
+    @book = Book.find(params[:id]).decorate
   end
 
   def new_book
