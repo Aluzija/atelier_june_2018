@@ -22,7 +22,7 @@ class ReservationsHandler
   end
 
   def reserve
-    return "Book is not available for reservation" unless book.can_reserve?(user)
+    return "Book is not available for reservation" unless can_reserve?
     book.reservations.create(user: user, status: 'RESERVED')
   end
 
@@ -38,8 +38,8 @@ class ReservationsHandler
     book.reservations.find_by(user: user, status: 'TAKEN').present?
   end
 
-  def can_reserve?(user)
-    reservations.find_by(user: user, status: 'RESERVED').nil?
+  def can_reserve?
+    book.reservations.find_by(user: user, status: 'RESERVED').nil?
   end
 
   private
